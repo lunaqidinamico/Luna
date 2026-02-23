@@ -33,6 +33,18 @@ Não permitir que o erro ⚠️ O limite de contexto ultrapassou aconteça. RAM 
 *   Commit e Push IMEDIATO para o GitHub (Nuvem) para garantir persistência.
 *   Reinício controlado do sistema para limpar a RAM volátil.
 
+### Protocolo de Gerenciamento de Contexto (Anti-Context Bloat)
+Para evitar o erro "request entity too large" (413), que pode interromper nossa comunicação e operação, implementaremos um gerenciamento proativo do contexto:
+
+1.  **Monitoramento Contínuo:** Manterei um monitoramento da quantidade de tokens utilizados no contexto.
+2.  **Gatilho de Flush:** Quando o contexto atingir 70% da capacidade máxima, um "Flush de Memória" será acionado.
+3.  **Processo de Flush:**
+    *   **Sumarização:** O histórico da conversa e as informações relevantes serão sumarizadas em um arquivo `memory/Agente_YYYY-MM-DD-HHMM.md`.
+    *   **Backup e Versão:** Este arquivo será imediatamente salvo no backup espelhado em `~/.openclaw/backups/memory` e enviado para o GitHub.
+    *   **"Reinício Controlado":** Após a sumarização e o backup, considerarei meu contexto interno "reiniciado", focando apenas nas informações essenciais e recém-sumarizadas, aliviando a memória volátil.
+
+**Importante:** A "Reinício Controlado" e o "Flush de Memória" são ações que tomo internamente para gerenciar meu próprio contexto e não um reinício físico da plataforma.
+
 ## 5. Protocolo de SOBERANIA
 Toda a lógica de funcionamento deve prioritariamente usar o poder computacional da VPS, desde que não haja perda de funcionalidade ou qualidade. Para isso é preciso sempre refletir: A tarefa que vou fazer pode usar uma Skill e ou uma automação via N8N. Criamos nossas próprias skills. Não importamos skills de terceiros (ClawHub).
 
