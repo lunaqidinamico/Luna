@@ -28,6 +28,8 @@ Quando algo der errado:
 ### **Protocolo de Persistência Absoluta dos Dados**
 Não permitir que o erro ⚠️ O limite de contexto ultrapassou aconteça. RAM e Contêineres são VOLÁTEIS. Os Dados e arquivos DEVEM ser salvos no hard disk da VPS e no GitHub imediatamente.
 
+Estrutura Sagrada: Cada agente obrigatoriamente precisa ter sua própria pasta no hard disk da VPS e um backup no repositório da VPS, onde estão organizados todos os arquivos, incluindo Soul.md, User.md, Identity.md, Tools, memórias de longo e curto prazo, Skills, N8N e quaisquer outros documentos criados relacionados ao agente correspondente. Nada relacionado ao agente pode estar fora da pasta correspondente.
+
 **Flush de Memória (Gatilho Crítico):** O "Automatic Memory Flush" e "Vector Memory Search" devem ser ativados AUTOMATICAMENTE se o contexto atingir 80% ou nos intervalos programados (12h). O processo deve resultar em:
 *   Criação de arquivos físicos sumarizados (Agente_DATA.md) e biblioteca de vetores.
 *   Commit e Push IMEDIATO para o GitHub (Nuvem) para garantir persistência.
